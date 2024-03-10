@@ -201,8 +201,8 @@ class Transformer(nn.Module):
         N, trg_length = trg.shape
         trg_mask = torch.tril(torch.ones((trg_length, trg_length))).expand(
             N,1,trg_length, trg_length
-        ).bool()
-        tgt_pad_mask = (trg.cpu() != self.trg_pad_ind).unsqueeze(1).unsqueeze(2).bool()
+        ).bool().to(self.device)
+        tgt_pad_mask = (trg != self.trg_pad_ind).unsqueeze(1).unsqueeze(2).bool().to(self.device)
         tgt_mask = trg_mask & tgt_pad_mask
         return trg_mask.to(self.device)
     

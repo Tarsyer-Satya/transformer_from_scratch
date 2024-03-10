@@ -1,0 +1,4 @@
+my_checkpoint.pth.tar
+/__pycache__
+/runs
+seqtoseq.ipynb
